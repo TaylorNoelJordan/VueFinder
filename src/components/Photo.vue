@@ -15,7 +15,7 @@
 
 <style scoped>
     img {
-        box-shadow: 0 0 35px black;
+        box-shadow: 0 0 15px #3D0000;
         margin: 0 8px 8px 0;
     }
 </style>

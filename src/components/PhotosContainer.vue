@@ -1,20 +1,25 @@
 <template>
-    <ul>
-        <li :key='photo.id' v-for='photo in photos'>
-            <Photo :photo='photo' />
-        </li>
-    </ul>
+    <main>
+        <SearchForm :search='this.search'/>
+        <!-- <input type='text' v-model="search" placeholder="search images"/> -->
+        <ul>
+            <li :key='photo.id' v-for='photo in photos'>
+                <Photo :photo='photo' />
+            </li>
+        </ul>  
+    </main>
 </template>
 
 <script>
     import { apiKey } from '../../utils/apiKey.js';
-    import Photo from './Photo.vue'
+    import SearchForm from './SearchForm.vue';
+    import Photo from './Photo.vue';
     export default {
         name: 'PhotosContainer',
         data() {
             return {
                 photos: [],
-                error: ''
+                error: '',
             }
         },
         created() {
@@ -35,7 +40,8 @@
             }
         },
         components: {
-            Photo
+            Photo,
+            SearchForm
         }
     }
 </script>
@@ -44,16 +50,14 @@
     ul {
         display: flex;
         flex-flow: column wrap;
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
         list-style: none;
-        max-height: 1000px;
+        max-height: 800px;
         margin-left: -8px; 
-        overflow: hidden;
-        width: 100%;
-        /* display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        list-style: none;
+        /* overflow: hidden; */
+        max-width: 90%;
+
+
         margin: 0;
         padding: 1rem; 
         /* grid-row-gap: 1rem; */
