@@ -18,9 +18,10 @@
         margin: 0;
     }
     header {
-        background-color: #222;
+        background-color: #FAF0E6;
         padding: 20px;
-        color: white;
+        color: #3d0000;
         margin-top: 0;
+        text-align: left;
     }
 </style>

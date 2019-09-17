@@ -9,7 +9,18 @@
         name: 'PhotosContainer',
         data() {
             return {
-                photos: []
+                photos: [],
+                error: ''
+            }
+        },
+        methods: {
+            fetchData: async function() {
+                try {
+                    const res = await fetch('')
+
+                } catch (error) {
+                    this.error = error
+                }
             }
         }
     }
