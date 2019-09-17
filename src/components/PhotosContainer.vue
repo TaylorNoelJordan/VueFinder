@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import { apiKey } from '../utils/apiKey.js'
+    import { apiKey } from '../../utils/apiKey.js';
     export default {
         name: 'PhotosContainer',
         data() {
@@ -20,17 +20,20 @@
         methods: {
             fetchData: async function() {
                 try {
-                    const res = await fetch(`https://api.unsplash.com/photos/?client_id=${apiKey}`)
-                    const photos = res.json();
+                    const url = `https://api.unsplash.com/photos/?client_id=`
+                    const response = await fetch(url)
+                    const photos = await response.json()
+
                     this.photos = photos;
-                } catch (error) {
-                    this.error = error
+
+                } catch ({ message }) {
+                    this.error = message
                 }
             }
         }
     }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
