@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import { API_KEY } from '../../utils/apiKey.js';
+    const API_KEY = process.env.VUE_APP_API_KEY;
     import Photo from './Photo.vue';
     export default { 
         name: 'PhotosContainer',
