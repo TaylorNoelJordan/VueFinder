@@ -1,33 +1,66 @@
 <template>
-    <ul>
-        <li :key='photo.id' v-for='photo in photos'>
-            <Photo :photo='photo' />
-        </li>
-    </ul>
+    <main>
+        <div class='search-form'>
+            <input type='text' v-model="search" placeholder="search images" autocomplete="off" id='search-input'/>
+            <button class='search-button' v-on:click='searchPhotos'>Search</button>
+        </div>
+        <div v-if="currentSearch">
+            <p class='current-search'>Displaying images related to {{ currentSearch }}</p>
+        </div>
+        <div v-else-if='error'>
+            <p>{{ error }}</p>
+        </div>
+        <ul>
+            <li :key='photo.id' v-for='photo in photos'>
+                <Photo :photo='photo' :key='photo.id'/>
+            </li>
+        </ul>  
+    </main>
 </template>
 
 <script>
     import { apiKey } from '../../utils/apiKey.js';
-    import Photo from './Photo.vue'
+    import Photo from './Photo.vue';
     export default {
         name: 'PhotosContainer',
         data() {
             return {
                 photos: [],
-                error: ''
+                error: '',
+                search: '',
+                currentSearch: ''
             }
         },
         created() {
-            this.fetchData()
+            this.fetchPhotos()
         },
         methods: {
-            fetchData: async function() {
+            fetchPhotos: async function() {
                 try {
-                    const url = `https://api.unsplash.com/photos/?client_id=${apiKey}`
+                    const url = `https://api.unsplash.com/photos/?page=1&per_page=24&client_id=${apiKey}`
                     const response = await fetch(url)
                     const photos = await response.json()
-
                     this.photos = photos;
+
+                } catch ({ message }) {
+                    this.error = message
+                }
+            },
+            searchPhotos: async function() {
+                try {
+                    const url = `https://api.unsplash.com/search/photos?page=1&per_page=24&query=${this.search}&client_id=${apiKey}`
+                    const response = await fetch(url)
+                    const queriedPhotos = await response.json();
+                    
+                    if(queriedPhotos == undefined) {
+                        this.currentSearch = ''
+                        this.error = 'No photos match your search'
+                    } else {
+                        this.currentSearch = this.search
+                        this.search = ''
+                        this.photos = queriedPhotos.results;
+                    }
+
 
                 } catch ({ message }) {
                     this.error = message
@@ -43,20 +76,39 @@
 <style scoped>
     ul {
         display: flex;
-        flex-flow: column wrap;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
+        align-items: space-evenly;
         list-style: none;
-        max-height: 1000px;
-        margin-left: -8px; 
-        overflow: hidden;
         width: 100%;
-        /* display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        list-style: none;
-        margin: 0;
-        padding: 1rem; 
-        /* grid-row-gap: 1rem; */
-        /* grid-template-columns: repeat(6, 1fr) */
+    }
+
+    #search-input {
+        border-radius: 15px;
+        font-size: 1.2em;
+        height: 30px;
+        letter-spacing: 1px;
+        margin: 5px;
+        padding: 5px;
+        width: 200px;
+    }
+
+    .search-button {
+        height: 30px;
+        border-radius: 15px;
+        padding: 5px;
+        font-size: 1em;
+        font-weight: 200;
+        letter-spacing: 1px;
+        width: 80px;
+    }
+
+    .search-button:hover {
+        background-color: #3d0000;
+        color: #FAF0E6;
+    }
+    .search-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>

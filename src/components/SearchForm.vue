@@ -7,8 +7,10 @@
 <script>
     export default {
         name: 'SearchForm',
-        props: {
-            query: String
+        data() {
+            return {
+                search: ''
+            }
         }
     }
 </script>
