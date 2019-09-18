@@ -5,10 +5,10 @@
             <button class='search-button' v-on:click='searchPhotos'>Search</button>
         </div>
         <div v-if="currentSearch">
-            <p class='current-search'>Displaying images related to {{ currentSearch }}</p>
+            <p class='user-indicator'>Displaying images related to <span class='keyword'>{{ currentSearch }}</span></p>
         </div>
         <div v-else-if='error'>
-            <p>{{ error }}</p>
+            <p class='user-indicator'>{{ error }}</p>
         </div>
         <ul>
             <li :key='photo.id' v-for='photo in photos'>
@@ -79,6 +79,7 @@
         flex-flow: row wrap;
         align-items: space-evenly;
         list-style: none;
+        margin: auto;
         width: 100%;
     }
 
@@ -110,5 +111,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .user-indicator {
+        color: #3d0000;
+        font-size: 24px;
+    }
+
+    .keyword {
+        font-weight: bold;
     }
 </style>

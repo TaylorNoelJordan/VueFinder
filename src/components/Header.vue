@@ -24,7 +24,7 @@
     img {
         border: solid 1px #3d0000;
         border-radius: 15px;
-        height: 220px;
+        height: 180px;
         margin: 15px;
     }
 </style>
