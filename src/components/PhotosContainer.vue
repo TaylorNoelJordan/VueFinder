@@ -19,9 +19,10 @@
 </template>
 
 <script>
-    import { apiKey } from '../../utils/apiKey.js';
+    import { API_KEY } from '../../utils/apiKey.js';
+    // const API_KEY = process.env.VUE_APP_API_KEY;
     import Photo from './Photo.vue';
-    export default {
+    export default { 
         name: 'PhotosContainer',
         data() {
             return {
@@ -37,7 +38,7 @@
         methods: {
             fetchPhotos: async function() {
                 try {
-                    const url = `https://api.unsplash.com/photos/?page=1&per_page=24&client_id=${apiKey}`
+                    const url = `https://api.unsplash.com/photos/?page=1&per_page=24&client_id=${API_KEY}`
                     const response = await fetch(url)
                     const photos = await response.json()
                     this.photos = photos;
@@ -48,7 +49,7 @@
             },
             searchPhotos: async function() {
                 try {
-                    const url = `https://api.unsplash.com/search/photos?page=1&per_page=24&query=${this.search}&client_id=${apiKey}`
+                    const url = `https://api.unsplash.com/search/photos?page=1&per_page=24&query=${this.search}&client_id=${API_KEY}`
                     const response = await fetch(url)
                     const queriedPhotos = await response.json();
                     
