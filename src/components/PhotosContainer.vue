@@ -5,10 +5,10 @@
             <button class='search-button' v-on:click='searchPhotos'>Search</button>
         </div>
         <div v-if="currentSearch">
-            <p class='current-search'>Displaying images related to {{ currentSearch }}</p>
+            <p class='user-indicator'>Displaying images related to <span class='keyword'>{{ currentSearch }}</span></p>
         </div>
         <div v-else-if='error'>
-            <p>{{ error }}</p>
+            <p class='user-indicator'>{{ error }}</p>
         </div>
         <ul>
             <li :key='photo.id' v-for='photo in photos'>
@@ -19,9 +19,10 @@
 </template>
 
 <script>
-    import { apiKey } from '../../utils/apiKey.js';
+    import { API_KEY } from '../../utils/apiKey.js';
+    // const API_KEY = process.env.VUE_APP_API_KEY;
     import Photo from './Photo.vue';
-    export default {
+    export default { 
         name: 'PhotosContainer',
         data() {
             return {
@@ -37,7 +38,7 @@
         methods: {
             fetchPhotos: async function() {
                 try {
-                    const url = `https://api.unsplash.com/photos/?page=1&per_page=24&client_id=${apiKey}`
+                    const url = `https://api.unsplash.com/photos/?page=1&per_page=24&client_id=${API_KEY}`
                     const response = await fetch(url)
                     const photos = await response.json()
                     this.photos = photos;
@@ -48,7 +49,7 @@
             },
             searchPhotos: async function() {
                 try {
-                    const url = `https://api.unsplash.com/search/photos?page=1&per_page=24&query=${this.search}&client_id=${apiKey}`
+                    const url = `https://api.unsplash.com/search/photos?page=1&per_page=24&query=${this.search}&client_id=${API_KEY}`
                     const response = await fetch(url)
                     const queriedPhotos = await response.json();
                     
@@ -79,6 +80,7 @@
         flex-flow: row wrap;
         align-items: space-evenly;
         list-style: none;
+        margin: auto;
         width: 100%;
     }
 
@@ -110,5 +112,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .user-indicator {
+        color: #3d0000;
+        font-size: 24px;
+    }
+
+    .keyword {
+        font-weight: bold;
     }
 </style>

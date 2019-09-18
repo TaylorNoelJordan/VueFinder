@@ -26,5 +26,6 @@
     img:hover {
         transform: scale(1.04);
         transition: all ease-in-out .3s;
+        /* filter: brightness(50%) */
     }
 </style>
