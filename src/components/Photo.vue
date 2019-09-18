@@ -16,6 +16,10 @@
 <style scoped>
     img {
         box-shadow: 0 0 15px #3D0000;
-        margin: 0 8px 8px 0;
+        /* margin: 0 8px 8px 0;  */
+        flex: auto;
+        height: 250px;
+        min-width: 150px;
+        margin: 0 8px 8px 0; 
     }
 </style>

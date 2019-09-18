@@ -12,7 +12,6 @@
                 search: ''
             }
         }
-
     }
 </script>
 
