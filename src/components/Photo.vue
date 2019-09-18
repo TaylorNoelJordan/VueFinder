@@ -22,4 +22,9 @@
         min-width: 150px;
         margin: 0 8px 8px 0; 
     }
+
+    img:hover {
+        transform: scale(1.04);
+        transition: all ease-in-out .3s;
+    }
 </style>

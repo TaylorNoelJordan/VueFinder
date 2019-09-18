@@ -5,42 +5,26 @@
 </template>
 
 <script>
-    import { apiKey } from '../../utils/apiKey';
     export default {
         name: 'Header',
-        data() {
-            return {
-                search: ''
-            }
-        },
-        methods: {
-            searchPhotos: async function() {
-                try {
-                    const url = `https://api.unsplash.com/photos?page=1&per_page=24&query=${this.search}&client_id=${apiKey}`
-                    const response = await fetch(url)
-                    const queriedPhotos = await response.json();
-                    this.photos = queriedPhotos
-                    console.log(queriedPhotos)
-                } catch ({ message }) {
-                    this.error = message
-                }
-            }
-        }
     }
 </script>
 
 <style scoped>
     h1 {
-        /* position: fixed; */
         font-size: 36px;
-        /* color: #fff; */
         margin: 0;
     }
     header {
         background-color: #FAF0E6;
-        padding: 20px;
+        padding: 15px;
         color: #3d0000;
-        /* margin-top: 0; */
-        /* text-align: left; */
+    }
+
+    img {
+        border: solid 1px #3d0000;
+        border-radius: 15px;
+        height: 220px;
+        margin: 15px;
     }
 </style>
