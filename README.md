@@ -3,7 +3,14 @@
 ## Description
 VueFinder is an application that allows a user to view and search open source photos based on whatever query they type into the search bar. This project features the Unsplash API for which documentation can be found [here](https://unsplash.com/documentation). This project was given as a take home challenge with just a few days to complete. This is my first implementation of a Vue application.
 
-## Project setup
+## Spec
+Create a single-page application in **[Vue.js](https://vuejs.org/)** that allows
+users to search for and view photos that relate to the search terms. You'll need
+to use the API to parse the user query, and return photos that match this
+search. How you present the photos is up to you, but don't forget you're a front
+end developer.
+
+## Project Setup
 From the command line:
 
 ```
@@ -13,6 +20,9 @@ npm install
 npm run serve
 
 ```
+
+## Production Link
+https://vuefinder.herokuapp.com/
 
 ## Project Successes
 I'm very excited to have been able to put together a small simple application in just a few days time with a framework I've never seen or worked with before. I took my time reading documentation and watching tutorials to have as good of a grasp on the concepts as possible as I began to code. 
